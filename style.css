@@ -1,0 +1,44 @@
+:root {
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --text-primary: #333;
+  --accent: #6366f1;
+}
+
+body.dark-theme {
+  --bg-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-primary: #e5e5e5;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+}
+
+.task-item {
+  background: var(--card-bg);
+}
+
+/* Highlights the active filter button */
+.filters button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+/* Visual feedback during drag and drop */
+.task-item.dragging {
+  opacity: 0.5;
+  border: 2px dashed #ccc;
+}
+
+.task-item.drag-over {
+  border-top: 2px solid #007bff; /* Shows where the item will land */
+}
+
+.drag-handle {
+  cursor: grab;
+  padding-right: 10px;
+}

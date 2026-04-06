@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>TaskFlow</h1>
+        <button type="button" id="theme-toggle" aria-label="Toggle Dark Mode">
+          🌙
+        </button>
+      </header>
+      <section class="search-container">
+        <input
+          type="text"
+          name="search-task"
+          id="search-task"
+          placeholder="Search tasks..."
+        />
+      </section>
+
+      <section class="input-group">
+        <input
+          type="text"
+          name="task-input"
+          id="task-input"
+          placeholder="What needs to be done?"
+        />
+        <select name="priority-input" id="priority-input">
+          <option value="low">Low</option>
+          <option value="medium">medium</option>
+          <option value="high">High</option>
+        </select>
+        <button type="button" id="add-btn">Add Task</button>
+      </section>
+
+      <nav class="filters">
+        <button data-filter="all">All</button>
+        <button data-filter="active">Active</button>
+        <button data-filter="completed">Completed</button>
+      </nav>
+
+      <ul id="task-list" class="task-list"></ul>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
