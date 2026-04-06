@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <main class="container">
@@ -22,6 +22,11 @@
           placeholder="Search tasks..."
         />
       </section>
+
+      <select id="sort-select">
+        <option value="newest">Sort by: Newset</option>
+        <option value="priority">Sort by: Priority</option>
+      </select>
 
       <section class="input-group">
         <input
@@ -46,6 +51,6 @@
 
       <ul id="task-list" class="task-list"></ul>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="src/app.js"></script>
   </body>
 </html>
