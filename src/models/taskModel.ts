@@ -1,26 +1,23 @@
-/**
- * MODEL: Manages data and business logic.
- */
+import type { Task, AppState, Priority, FilterType, SortType } from "../types";
+
 export default class TaskModel {
+  private state: AppState;
+
   constructor() {
     this.state = {
-      tasks: JSON.parse(localStorage.getItem("tasks")) || [],
+      tasks: JSON.parse(localStorage.getItem("tasks") || "[]"),
       filter: "all",
-      sortBy: "newset", // 'newset' | 'priority'
+      sortBy: "newest",
       searchQuery: "",
     };
   }
 
-  setSort(sortBy) {
-    this.state.sortBy = sortBy;
-  }
-
-  _save() {
+  private _save(): void {
     localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
   }
 
-  addTask(text, priority) {
-    const newTask = {
+  addTask(text: string, priority: Priority): void {
+    const newTask: Task = {
       id: crypto.randomUUID(),
       text,
       priority,
@@ -31,7 +28,7 @@ export default class TaskModel {
     this._save();
   }
 
-  updateTask(id, newText) {
+  updateTask(id: string, newText: string): void {
     const task = this.state.tasks.find((t) => t.id === id);
     if (task && newText.trim()) {
       task.text = newText.trim();
@@ -39,33 +36,40 @@ export default class TaskModel {
     }
   }
 
-  deleteTask(id) {
+  deleteTask(id: string): void {
     this.state.tasks = this.state.tasks.filter((t) => t.id !== id);
     this._save();
   }
 
-  toggleTask(id) {
+  toggleTask(id: string): void {
     const task = this.state.tasks.find((t) => t.id === id);
     if (task) task.completed = !task.completed;
     this._save();
   }
 
-  reorder(fromIndex, toIndex) {
+  reorder(fromIndex: number, toIndex: number): void {
     const [movedItem] = this.state.tasks.splice(fromIndex, 1);
-    this.state.tasks.splice(toIndex, 0, movedItem);
-    this._save();
+    if (movedItem) {
+      this.state.tasks.splice(toIndex, 0, movedItem);
+      this._save();
+    }
   }
 
-  setFilter(filter) {
+  setFilter(filter: FilterType): void {
     this.state.filter = filter;
   }
 
-  setSearch(query) {
+  setSort(sortBy: SortType): void {
+    this.state.sortBy = sortBy;
+  }
+
+  setSearch(query: string): void {
     this.state.searchQuery = query.toLowerCase();
   }
 
-  getProcessedTasks() {
+  getProcessedTasks(): Task[] {
     let filtered = [...this.state.tasks];
+
     if (this.state.filter === "active")
       filtered = filtered.filter((t) => !t.completed);
     if (this.state.filter === "completed")
@@ -78,7 +82,7 @@ export default class TaskModel {
     }
 
     if (this.state.sortBy === "priority") {
-      const weights = { high: 3, medium: 2, low: 1 };
+      const weights: Record<Priority, number> = { high: 3, medium: 2, low: 1 };
       filtered.sort((a, b) => weights[b.priority] - weights[a.priority]);
     } else {
       filtered.sort((a, b) => b.createdAt - a.createdAt);
