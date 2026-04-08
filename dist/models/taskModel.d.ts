@@ -1,4 +1,4 @@
-import type { Task, Priority, FilterType, SortType } from "../types";
+import type { Task, Priority, FilterType, SortType } from "../types.js";
 export default class TaskModel {
     private state;
     constructor();

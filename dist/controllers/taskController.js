@@ -1,5 +1,3 @@
-import TaskModel from "../models/taskModel";
-import TaskView from "../views/taskView";
 export default class TaskController {
     model;
     view;

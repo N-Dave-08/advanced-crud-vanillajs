@@ -1,6 +1,6 @@
-import TaskModel from "../models/taskModel";
-import TaskView from "../views/taskView";
-import type { Priority, FilterType, SortType } from "../types";
+import TaskModel from "../models/taskModel.js";
+import TaskView from "../views/taskView.js";
+import type { Priority, FilterType, SortType } from "../types.js";
 export default class TaskController {
     private model;
     private view;

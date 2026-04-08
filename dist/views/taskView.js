@@ -1,4 +1,4 @@
-import { escapeHTML } from "../utils/helpers";
+import { escapeHTML } from "../utils/helpers.js";
 export default class TaskView {
     taskList;
     input;

@@ -1,4 +1,10 @@
-import type { Task, AppState, Priority, FilterType, SortType } from "../types";
+import type {
+  Task,
+  AppState,
+  Priority,
+  FilterType,
+  SortType,
+} from "../types.js";
 
 export default class TaskModel {
   private state: AppState;

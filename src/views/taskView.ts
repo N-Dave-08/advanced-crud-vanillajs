@@ -1,5 +1,5 @@
-import type { Task, Priority, FilterType, SortType } from "../types";
-import { escapeHTML } from "../utils/helpers";
+import type { Task, Priority, FilterType, SortType } from "../types.js";
+import { escapeHTML } from "../utils/helpers.js";
 
 export default class TaskView {
   private taskList: HTMLElement;
